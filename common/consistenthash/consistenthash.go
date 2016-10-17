@@ -18,9 +18,15 @@ type Ring struct {
 // search will find the index of the node that is responsible for the range that
 // includes the hashed value of key.
 func (r *Ring) search(key string) int {
-    /////////////////////////
-    // YOUR CODE GOES HERE //
-    /////////////////////////
+    keyHash := hashId(key)
+
+    // Assuming array is sorted after each insertion, get the node with the smallest
+    // hash that is bigger than the key hash
+    for index, node := range r.Nodes {
+        if (node.HashId > keyHash) {
+            return index
+        }
+    }
 
     return 0
 }
